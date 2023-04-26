@@ -53,6 +53,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 if($stmt->rowCount() == 1){
                     if($row = $stmt->fetch()){
                         $hashed_password = $row["password"];
+                        $hashed_password1  = password_hash($password, PASSWORD_DEFAULT);
                         if(password_verify($password, $hashed_password)){
                             // Password is correct, so start a new session
                             session_start();
@@ -64,6 +65,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             
                             // Redirect user to home page
                             header("location: home.php");
+                            exit();
+
                         } else{
                             // Display an error message if password is not valid
                             $password_err = "The password you entered was not valid.";
@@ -117,7 +120,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Don't have an account? <a href="signup.php">Sign up now</a>.</p>
+            <p>Don't have an account? <a href="register.php">Sign up now</a>.</p>
         </form>
     </div>    
 </body>

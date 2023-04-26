@@ -28,9 +28,8 @@ if(isset($_POST["submit"])){
          exit();
      }
      else{
-		$stmt = $pdo->query = "SELECT * FROM members WHERE Nickname='$uname' AND Password='$pass'";
+		// $stmt = $pdo->query = "SELECT * FROM members WHERE Nickname='$uname' AND Password='$pass'"
        header("Location: index.php");
-       exit();
    }
 }
 }
