@@ -58,13 +58,15 @@ session_start();
     if ($stmt->rowCount() > 0) {
       // Output data of each row
       while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+        echo "<form method='post' action='test.php'>";
         echo "<tr>";
-        echo "<th scope='row'>" . $row['Id_Formation'] . "</th>";
-        echo "<td>" . $row['Sujet'] . "</td>";
+        echo "<th scope='row' name= 'Id_formation'>" . $row['Id_formation'] . "</th>";
+        echo "<td>" . $row['sujet'] . "</td>";
         echo "<td>" . $row['categorie'] . "</td>";
         echo "<td>" . $row['massHoraire'] . "</td>";
-        echo "<td><a href='test.php?id=" . $row['Id_Formation'] . "' class='btn btn-primary'>Join</a></td>";
+        echo "<td><a href='test.php?id=" . $row['Id_formation'] . "' class='btn btn-primary'>Join</a></td>";
         echo "</tr>";
+        echo "<form>";
       }
     } else {
       echo "<tr><td colspan='5'>No results found.</td></tr>";

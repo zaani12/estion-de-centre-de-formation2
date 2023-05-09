@@ -1,7 +1,7 @@
 <?php
 // Include the database connection file
 require_once "connect.php";
-
+session_start();
 // check if the form is submitted
 if (isset($_POST['submit'])) {
 
