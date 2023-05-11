@@ -43,34 +43,34 @@ if ($session_id) {
     if ($result) {
       // If the user is already in the session, display an error message
       echo "You are already in this session.";
-    }else{
-              // check if the too sission nto in the same tiam 
-              $new_session = "SELECT * FROM session WHERE Id_session";
-              $new_session = $conn->query($new_session);
-              $new_session = $new_session->fetch(PDO::FETCH_ASSOC);
-          
-              $nb_sessions = "SELECT *,COUNT(*) AS nb_sessions
-              FROM rejoindre
-              WHERE Id_Apprenant =  $user_id";
-              $nb_sessions = $conn->query($nb_sessions);
-              $nb_sessions = $nb_sessions->fetch(PDO::FETCH_ASSOC);
-          
-              $count = $nb_sessions['nb_sessions'];
-          
-              $id_old_session = $nb_sessions['Id_session'];
-              $old_session = "SELECT * FROM session WHERE Id_session = $id_old_session";
-              $old_session = $conn->query($old_session);
-              $old_session = $old_session->fetch(PDO::FETCH_ASSOC);
-
-              if ($new_session['Date_debut'] > $old_session['Date_fin']) {
-                return true;
-              };
-            }
-        if ($result) {
-          // If the user is already in the session, display an error message
-          echo "You are already in this zaeenj.";
-        }else {
-      // Insert a new record into the "rejoindre" table
+    }else  {
+        $new_session = "SELECT * FROM session WHERE Id_session ";
+        $new_session = $conn->query($new_session);
+        $new_session = $new_session->fetch(PDO::FETCH_ASSOC);
+    
+        $nb_sessions = "SELECT *,COUNT(*) AS nb_sessions
+        FROM rejoindre
+        WHERE Id_Apprenant =  $user_id";
+        $nb_sessions = $conn->query($nb_sessions);
+        $nb_sessions = $nb_sessions->fetch(PDO::FETCH_ASSOC);
+    
+        $count = $nb_sessions['nb_sessions'];
+    
+        $id_old_session = $nb_sessions['Id_session'];
+        $old_session = "SELECT * FROM session WHERE Id_session ";
+        $old_session = $conn->query($old_session);
+        $old_session = $old_session->fetch(PDO::FETCH_ASSOC);
+    
+        // return [$old_session, $new_session];
+        if ($count < 2) {
+          if ( $old_session['Date_fin'] < $new_session['Date_debut'] )  {
+            $result = true;
+          }
+        } else {
+           $result = false;
+        }
+        if ($result = true) {
+                  // Insert a new record into the "rejoindre" table
       $sql = "INSERT INTO rejoindre (Id_apprenant, Id_session) VALUES (:user_id, :session_id)";
       $stmt = $conn->prepare($sql);
       $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
@@ -85,8 +85,14 @@ if ($session_id) {
         // If the insertion fails, display an error message
         echo "Error joining the session.";
       }
+        }
+    
+ else {
+    echo "you join too sesion in the same time";
+
     }
   }
 }
-  
-?>
+}
+
+

@@ -16,6 +16,9 @@ session_start();
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 </head>
 <body>
+  <form action="test2.php" >
+  <p>  <a class='btn btn-primary' href="profile.php">profile</a></p>
+  </form>
   <div class="container">
     <h1 class="text-center my-5">Table of Formations</h1>
     <table class="table table table-hover table table-bordered border-primary">
