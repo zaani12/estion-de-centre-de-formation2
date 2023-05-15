@@ -44,7 +44,7 @@ if ($session_id) {
       // If the user is already in the session, display an error message
       echo "You are already in this session.";
     }else  {
-        $new_session = "SELECT * FROM session WHERE Id_session ";
+        $new_session = "SELECT * FROM session WHERE Id_session = $session_id ";
         $new_session = $conn->query($new_session);
         $new_session = $new_session->fetch(PDO::FETCH_ASSOC);
     
@@ -57,19 +57,17 @@ if ($session_id) {
         $count = $nb_sessions['nb_sessions'];
     
         $id_old_session = $nb_sessions['Id_session'];
-        $old_session = "SELECT * FROM session WHERE Id_session ";
+        $old_session = "SELECT * FROM session WHERE Id_session = $id_old_session";
         $old_session = $conn->query($old_session);
         $old_session = $old_session->fetch(PDO::FETCH_ASSOC);
     
         // return [$old_session, $new_session];
-        if ($count < 2) {
-          if ( $old_session['Date_fin'] < $new_session['Date_debut'] )  {
+        if ($old_session['Date_fin'] < $new_session['Date_debut']) {
             $result = true;
-          }
-        } else {
+          }else {
            $result = false;
         }
-        if ($result = true) {
+        if ($result) {
                   // Insert a new record into the "rejoindre" table
       $sql = "INSERT INTO rejoindre (Id_apprenant, Id_session) VALUES (:user_id, :session_id)";
       $stmt = $conn->prepare($sql);
@@ -92,7 +90,8 @@ if ($session_id) {
 
     }
   }
+  }
 }
-}
+
 
 

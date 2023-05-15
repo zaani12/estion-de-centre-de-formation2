@@ -59,16 +59,18 @@ if ($formation_id) {
     // Output the formation details in HTML
     ?>
 
-    <form method='get' action='join.php'>
       <?php
+      //  $_SESSION["Id_session"] = $row["Id_session"]; 
     while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-      echo "";
+   
+     echo " <form method='get' action='join.php'> ";
       echo "<tr>";
       echo "<th scope='row' name= 'Id_formation'>" . $row['Id_session'] . "</th>";
       echo "<td>" . $row['Etat'] . "</td>";
       echo "<td>" . $row['Date_debut'] . "</td>";
       echo "<td>" . $row['Date_fin'] . "</td>";
       echo "<td>" . $row['Places_max'] . "</td>";
+      // echo "<span type = 'hidden' name='Id_session'>" . $row['Id_session'] . "</span>";
       echo "<td>" .  $row['nom'] . " " . $row['prenom'] . "</td>";
       echo "<td><a href='join.php?id=" . $row['Id_session'] . "' class='btn btn-primary'>Join</a></td>";
       echo "</tr>";

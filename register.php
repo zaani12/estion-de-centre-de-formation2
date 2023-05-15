@@ -108,7 +108,7 @@ if (isset($_POST['submit'])) {
                         <input type="password" class="form-control" name="password" required>
                     </div>
                     <button type="submit" name="submit" class="btn btn-primary btn-block">Sign Up</button>
-            <p> All redye have an accountt? <a href="log in.php">log in now</a>.</p>
+            <p> All redye have an accountt? <a href="login.php">log in now</a>.</p>
 
                 </form>
             </div>
