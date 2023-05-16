@@ -62,7 +62,7 @@ if ($session_id) {
         $old_session = $old_session->fetch(PDO::FETCH_ASSOC);
     
         // return [$old_session, $new_session];
-        if ($old_session['Date_fin'] < $new_session['Date_debut']) {
+        if ($old_session['Date_fin'] < $new_session['Date_debut'] || $old_session['Date_fin'] < $new_session['Date_debut']  ) {
             $result = true;
           }else {
            $result = false;
@@ -78,6 +78,12 @@ if ($session_id) {
       if ($result) {
         // If the insertion is successful, display a success message
         echo "You have joined the session.";
+        //  var_dump($id_old_session);
+        //  var_dump($new_session['Id_session']);
+        //  var_dump($result);
+        //  var_dump($old_session['Date_fin']);
+        //  var_dump($new_session['Date_debut']);
+        //  var_dump()
       }
        else {
         // If the insertion fails, display an error message
@@ -90,8 +96,4 @@ if ($session_id) {
 
     }
   }
-  }
-}
-
-
-
+  }}
