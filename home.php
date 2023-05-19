@@ -18,6 +18,8 @@ session_start();
 <body>
   <form action="test2.php" >
   <p>  <a class='btn btn-primary' href="profile.php">profile</a></p>
+  <p>  <a class='btn btn-primary' href="myInsciptions.php">my Insciptions</a></p>
+
   </form>
   <div class="container">
     <h1 class="text-center my-5">Table of Formations</h1>
